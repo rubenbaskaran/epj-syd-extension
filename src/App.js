@@ -1,4 +1,9 @@
+import React from "react";
+import "./App.css";
+
 function App() {
+  const [chosenMenuItem, setChosenMenuItem] = React.useState(null);
+
   return (
     <div
       style={{
@@ -14,9 +19,30 @@ function App() {
           flexDirection: "column",
           flex: 1,
           height: "100%",
-          backgroundColor: "pink",
+          backgroundColor: "white",
         }}
-      ></div>
+      >
+        <div>
+          <button
+            className={chosenMenuItem === "London" ? "active" : ""}
+            onClick={() => setChosenMenuItem("London")}
+          >
+            London
+          </button>
+          <button
+            className={chosenMenuItem === "Paris" ? "active" : ""}
+            onClick={() => setChosenMenuItem("Paris")}
+          >
+            Paris
+          </button>
+          <button
+            className={chosenMenuItem === "Tokyo" ? "active" : ""}
+            onClick={() => setChosenMenuItem("Tokyo")}
+          >
+            Tokyo
+          </button>
+        </div>
+      </div>
       <div
         style={{
           display: "flex",
@@ -33,7 +59,28 @@ function App() {
             width: "100%",
             backgroundColor: "lightblue",
           }}
-        ></div>
+        >
+          {chosenMenuItem === "London" && (
+            <div className="content">
+              <h3>London</h3>
+              <p>London is the capital city of England.</p>
+            </div>
+          )}
+
+          {chosenMenuItem === "Paris" && (
+            <div className="content">
+              <h3>Paris</h3>
+              <p>Paris is the capital of France.</p>
+            </div>
+          )}
+
+          {chosenMenuItem === "Tokyo" && (
+            <div className="content">
+              <h3>Tokyo</h3>
+              <p>Tokyo is the capital of Japan.</p>
+            </div>
+          )}
+        </div>
         <div
           style={{
             display: "flex",
