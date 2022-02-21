@@ -1,5 +1,9 @@
 import React from "react";
 import "./App.css";
+import LondonMenuContent from "./LondonMenuContent";
+import ParisMenuContent from "./ParisMenuContent";
+import LondonTabContent from "./LondonTabContent";
+import ParisTabContent from "./ParisTabContent";
 
 function App() {
   const [chosenMenuItem, setChosenMenuItem] = React.useState(null);
@@ -36,12 +40,6 @@ function App() {
           >
             Paris
           </button>
-          <button
-            className={chosenMenuItem === "Tokyo" ? "active" : ""}
-            onClick={() => setChosenMenuItem("Tokyo")}
-          >
-            Tokyo
-          </button>
         </div>
       </div>
       <div
@@ -61,26 +59,8 @@ function App() {
             backgroundColor: "lightblue",
           }}
         >
-          {chosenMenuItem === "London" && (
-            <div className="menucontent">
-              <h3>London</h3>
-              <p>London is the capital city of England.</p>
-            </div>
-          )}
-
-          {chosenMenuItem === "Paris" && (
-            <div className="menucontent">
-              <h3>Paris</h3>
-              <p>Paris is the capital of France.</p>
-            </div>
-          )}
-
-          {chosenMenuItem === "Tokyo" && (
-            <div className="menucontent">
-              <h3>Tokyo</h3>
-              <p>Tokyo is the capital of Japan.</p>
-            </div>
-          )}
+          {chosenMenuItem === "London" && <LondonMenuContent />}
+          {chosenMenuItem === "Paris" && <ParisMenuContent />}
         </div>
         <div
           style={{
@@ -104,34 +84,10 @@ function App() {
             >
               Paris
             </button>
-            <button
-              className={chosenTabItem === "Tokyo" ? "active" : ""}
-              onClick={() => setChosenTabItem("Tokyo")}
-            >
-              Tokyo
-            </button>
           </div>
 
-          {chosenTabItem === "London" && (
-            <div className="tabcontent">
-              <h3>London</h3>
-              <p>London is the capital city of England.</p>
-            </div>
-          )}
-
-          {chosenTabItem === "Paris" && (
-            <div className="tabcontent">
-              <h3>Paris</h3>
-              <p>Paris is the capital of France.</p>
-            </div>
-          )}
-
-          {chosenTabItem === "Tokyo" && (
-            <div className="tabcontent">
-              <h3>Tokyo</h3>
-              <p>Tokyo is the capital of Japan.</p>
-            </div>
-          )}
+          {chosenTabItem === "London" && <LondonTabContent />}
+          {chosenTabItem === "Paris" && <ParisTabContent />}
         </div>
       </div>
     </div>
