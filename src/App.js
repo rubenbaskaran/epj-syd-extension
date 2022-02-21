@@ -25,6 +25,7 @@ function App() {
           flex: 1,
           height: "100%",
           backgroundColor: "white",
+          border: "1px solid #ccc",
         }}
       >
         <div className="menu">
@@ -56,7 +57,7 @@ function App() {
             flexDirection: "column",
             flex: 7,
             width: "100%",
-            backgroundColor: "lightblue",
+            backgroundColor: "white",
           }}
         >
           {chosenMenuItem === "London" && <LondonMenuContent />}
@@ -68,7 +69,7 @@ function App() {
             flexDirection: "column",
             flex: 3,
             width: "100%",
-            backgroundColor: "lightgreen",
+            backgroundColor: "white",
           }}
         >
           <div className="tab">
