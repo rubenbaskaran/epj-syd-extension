@@ -1,3 +1,5 @@
+/* Menu & tab */
+
 .menu,
 .tab {
   border: 1px solid #ccc;
@@ -37,18 +39,41 @@
   padding: 6px 12px;
 }
 
+/* END */
+
+/* Table */
+
 table {
   border-spacing: 0;
   width: 100%;
   border: 1px solid #ddd;
 }
 
-th,
-td {
-  text-align: left;
+th {
+  text-align: center;
   padding: 16px;
+  font-size: 20px;
+}
+
+td {
+  text-align: center;
+  padding: 16px;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 tbody tr:nth-child(odd) {
-  background-color: #f2f2f2;
+  background: #eee;
 }
+
+tbody tr:hover {
+  background: #ddd;
+  transition: 0.2s;
+}
+
+tbody .selected {
+  background: #bbb !important;
+  text-decoration: underline;
+}
+
+/* END */

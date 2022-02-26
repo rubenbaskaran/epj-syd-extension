@@ -14,8 +14,8 @@ function App() {
       style={{
         display: "flex",
         flexDirection: "row",
-        height: "100vh",
-        width: "100vw",
+        height: "99.7vh",
+        width: "99.7vw",
       }}
     >
       <div

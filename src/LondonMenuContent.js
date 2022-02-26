@@ -2,6 +2,28 @@ import React from "react";
 import "./App.css";
 
 function LondonMenuContent() {
+  React.useEffect(() => {
+    var trs = document.querySelectorAll("tbody tr");
+    for (var i = 0; i < trs.length; i++) {
+      var currentRow = trs[i];
+
+      currentRow.addEventListener("click", function () {
+        console.log(this);
+
+        if (this.className === "selected") {
+          this.className = "";
+        } else {
+          var trs = document.querySelectorAll("tr");
+          for (var i = 0; i < trs.length; i++) {
+            trs[i].className = "";
+          }
+
+          this.className = "selected";
+        }
+      });
+    }
+  }, []);
+
   return (
     <div className="menucontent">
       <h2>Zebra Striped Table</h2>
