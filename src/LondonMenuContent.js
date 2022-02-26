@@ -1,15 +1,13 @@
 import React from "react";
 import "./App.css";
 
-function LondonMenuContent() {
+function LondonMenuContent(props) {
   React.useEffect(() => {
     var trs = document.querySelectorAll("tbody tr");
     for (var i = 0; i < trs.length; i++) {
       var currentRow = trs[i];
 
       currentRow.addEventListener("click", function () {
-        console.log(this);
-
         if (this.className === "selected") {
           this.className = "";
         } else {
@@ -19,6 +17,14 @@ function LondonMenuContent() {
           }
 
           this.className = "selected";
+
+          var rowData = {
+            firstname: this.cells[0].innerHTML,
+            lastname: this.cells[1].innerHTML,
+            points: this.cells[2].innerHTML,
+          };
+
+          props.setChosenTableRow(rowData);
         }
       });
     }

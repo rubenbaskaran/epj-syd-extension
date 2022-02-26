@@ -8,6 +8,7 @@ import ParisTabContent from "./ParisTabContent";
 function App() {
   const [chosenMenuItem, setChosenMenuItem] = React.useState(null);
   const [chosenTabItem, setChosenTabItem] = React.useState(null);
+  const [chosenTableRowData, setChosenTableRowData] = React.useState(null);
 
   return (
     <div
@@ -60,7 +61,9 @@ function App() {
             backgroundColor: "white",
           }}
         >
-          {chosenMenuItem === "London" && <LondonMenuContent />}
+          {chosenMenuItem === "London" && (
+            <LondonMenuContent setChosenTableRow={setChosenTableRowData} />
+          )}
           {chosenMenuItem === "Paris" && <ParisMenuContent />}
         </div>
         <div
@@ -87,7 +90,9 @@ function App() {
             </button>
           </div>
 
-          {chosenTabItem === "London" && <LondonTabContent />}
+          {chosenTabItem === "London" && (
+            <LondonTabContent data={chosenTableRowData} />
+          )}
           {chosenTabItem === "Paris" && <ParisTabContent />}
         </div>
       </div>
