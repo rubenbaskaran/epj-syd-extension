@@ -3,9 +3,8 @@ import "./App.css";
 
 function ParisTabContent() {
   return (
-    <div className="tabcontent">
-      <h3>Tab: Paris</h3>
-      <p>Paris is the capital city of France.</p>
+    <div>
+      <h3>Historik</h3>
     </div>
   );
 }

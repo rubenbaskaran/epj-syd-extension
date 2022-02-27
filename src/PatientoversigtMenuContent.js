@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 
-function LondonMenuContent(props) {
+function PatientoversigtMenuContent(props) {
   React.useEffect(() => {
     var trs = document.querySelectorAll("tbody tr");
     for (var i = 0; i < trs.length; i++) {
@@ -31,13 +31,8 @@ function LondonMenuContent(props) {
   }, []);
 
   return (
-    <div className="menucontent">
-      <h2>Zebra Striped Table</h2>
-      <p>
-        For zebra-striped tables, use the nth-child() selector and add a
-        background-color to all even (or odd) table rows:
-      </p>
-
+    <div>
+      <h2>Patientoversigt</h2>
       <table>
         <thead>
           <tr>
@@ -68,4 +63,4 @@ function LondonMenuContent(props) {
   );
 }
 
-export default LondonMenuContent;
+export default PatientoversigtMenuContent;
