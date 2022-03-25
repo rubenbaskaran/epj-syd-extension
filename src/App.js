@@ -6,11 +6,10 @@ import PatientDataTabContent from "./PatientDataTabContent";
 import HistorikTabContent from "./HistorikTabContent";
 
 // TODO:
-// - Opret variabel til navnet på tab menuen til enten "Patient data" eller "Opgave" afhængig af "chosenMenuItem"
 // - Opret ny fil til at repræsentere tab indhold for "Opgave"
 
 function App() {
-  const [chosenMenuItem, setChosenMenuItem] = React.useState(null);
+  const [chosenMenuItem, setChosenMenuItem] = React.useState("Patientoversigt");
   const [chosenTabItem, setChosenTabItem] = React.useState(null);
   const [chosenTableRowData, setChosenTableRowData] = React.useState(null);
 
@@ -142,7 +141,9 @@ function App() {
                 className={chosenTabItem === "LeftTab" ? "active" : ""}
                 onClick={() => setChosenTabItem("LeftTab")}
               >
-                Patient data
+                {chosenMenuItem === "Patientoversigt"
+                  ? "Patient data"
+                  : "Opgave"}
               </button>
               <button
                 className={chosenTabItem === "RightTab" ? "active" : ""}
