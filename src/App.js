@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import PatientoversigtMenuContent from "./PatientoversigtMenuContent";
 import MineOpgaverMenuContent from "./MineOpgaverMenuContent";
-import PatientDataTabContent from "./PatientDataTabContent";
+import PatientInfoTabContent from "./PatientInfoTabContent";
 import HistorikTabContent from "./HistorikTabContent";
 
 // TODO:
@@ -142,7 +142,7 @@ function App() {
                 onClick={() => setChosenTabItem("LeftTab")}
               >
                 {chosenMenuItem === "Patientoversigt"
-                  ? "Patient data"
+                  ? "Patient info"
                   : "Opgave"}
               </button>
               <button
@@ -154,7 +154,7 @@ function App() {
             </div>
             <div className="tabcontent">
               {chosenTabItem === "LeftTab" && (
-                <PatientDataTabContent data={chosenTableRowData} />
+                <PatientInfoTabContent data={chosenTableRowData} />
               )}
               {chosenTabItem === "RightTab" && <HistorikTabContent />}
             </div>
