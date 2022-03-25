@@ -1,10 +1,8 @@
 import React from "react";
 import "./App.css";
 
-// TODO
-// - Ret tekst i patientoversigt tabel
-// - Tilføj gyldig data til hver patient
-// - Tilføj en 4. patient
+// TODO 1: Tilføj object array med patient data og loop igennem det med map function
+// TODO 2: Vis dialog besked hvis algoritme er positiv (onClick event på patientoversigt tabel)
 
 function PatientoversigtMenuContent(props) {
   React.useEffect(() => {
@@ -24,12 +22,12 @@ function PatientoversigtMenuContent(props) {
           this.className = "selected";
 
           var rowData = {
-            firstname: this.cells[0].innerHTML,
-            lastname: this.cells[1].innerHTML,
-            points: this.cells[2].innerHTML,
+            fornavn: this.cells[0].innerHTML,
+            efternavn: this.cells[1].innerHTML,
+            alder: this.cells[2].innerHTML,
           };
 
-          props.setChosenTableRow(rowData);
+          props.setChosenPatient(rowData);
         }
       });
     }
@@ -41,9 +39,9 @@ function PatientoversigtMenuContent(props) {
       <table>
         <thead>
           <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Points</th>
+            <th>Fornavn</th>
+            <th>Efternavn</th>
+            <th>Alder</th>
           </tr>
         </thead>
         <tbody>

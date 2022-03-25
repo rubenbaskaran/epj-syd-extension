@@ -6,19 +6,19 @@ import PatientInfoTabContent from "./PatientInfoTabContent";
 import OpgaveInfoTabContent from "./OpgaveInfoTabContent";
 import HistorikTabContent from "./HistorikTabContent";
 
-// TODO:
-// Get data from Mine opgaver and pass them to OpgaveInfoTabContent
+// TODO 3: Modtag ny data fra "PatientoversigtMenuContent", opret et data object her og send det til "MineOpgaverMenuContent"
 
 function App() {
   const [chosenMenuItem, setChosenMenuItem] = React.useState("Patientoversigt");
   const [chosenTabItem, setChosenTabItem] = React.useState(null);
-  const [chosenTableRowData, setChosenTableRowData] = React.useState(null);
+  const [chosenPatient, setChosenPatient] = React.useState(null);
+  const [chosenTask, setChosenTask] = React.useState(null);
 
   React.useEffect(() => {
-    if (chosenTableRowData != null) {
+    if (chosenPatient != null || chosenPatient != null) {
       document.getElementById("myBtn").click();
     }
-  }, [chosenTableRowData]);
+  }, [chosenPatient, chosenTask]);
 
   return (
     <div
@@ -89,13 +89,19 @@ function App() {
           <div className="menu">
             <button
               className={chosenMenuItem === "Patientoversigt" ? "active" : ""}
-              onClick={() => setChosenMenuItem("Patientoversigt")}
+              onClick={() => {
+                setChosenMenuItem("Patientoversigt");
+                setChosenTask(null);
+              }}
             >
               Patientoversigt
             </button>
             <button
               className={chosenMenuItem === "MineOpgaver" ? "active" : ""}
-              onClick={() => setChosenMenuItem("MineOpgaver")}
+              onClick={() => {
+                setChosenMenuItem("MineOpgaver");
+                setChosenPatient(null);
+              }}
             >
               Mine opgaver
             </button>
@@ -121,10 +127,12 @@ function App() {
             <div className="menucontent">
               {chosenMenuItem === "Patientoversigt" && (
                 <PatientoversigtMenuContent
-                  setChosenTableRow={setChosenTableRowData}
+                  setChosenPatient={setChosenPatient}
                 />
               )}
-              {chosenMenuItem === "MineOpgaver" && <MineOpgaverMenuContent />}
+              {chosenMenuItem === "MineOpgaver" && (
+                <MineOpgaverMenuContent setChosenTask={setChosenTask} />
+              )}
             </div>
           </div>
           <div
@@ -156,9 +164,9 @@ function App() {
             <div className="tabcontent">
               {chosenTabItem === "LeftTab" &&
                 (chosenMenuItem === "Patientoversigt" ? (
-                  <PatientInfoTabContent data={chosenTableRowData} />
+                  <PatientInfoTabContent data={chosenPatient} />
                 ) : (
-                  <OpgaveInfoTabContent data={chosenTableRowData} />
+                  <OpgaveInfoTabContent data={chosenTask} />
                 ))}
               {chosenTabItem === "RightTab" && <HistorikTabContent />}
             </div>

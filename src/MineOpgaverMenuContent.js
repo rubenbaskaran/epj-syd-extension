@@ -1,14 +1,64 @@
 import React from "react";
 import "./App.css";
 
-// TODO
-// - Tilføj tabel til "Mine opgaver" (copy-paste fra Patientoversigt)
-// - Vis dialog besked og opret list item i tabel under "Mine opgaver" hvis algoritme er positiv (onClick event på patientoversigt tabel)
+function MineOpgaverMenuContent(props) {
+  React.useEffect(() => {
+    var trs = document.querySelectorAll("tbody tr");
+    for (var i = 0; i < trs.length; i++) {
+      var currentRow = trs[i];
 
-function MineOpgaverMenuContent() {
+      currentRow.addEventListener("click", function () {
+        if (this.className === "selected") {
+          this.className = "";
+        } else {
+          var trs = document.querySelectorAll("tr");
+          for (var i = 0; i < trs.length; i++) {
+            trs[i].className = "";
+          }
+
+          this.className = "selected";
+
+          var rowData = {
+            titel: this.cells[0].innerHTML,
+            type: this.cells[1].innerHTML,
+            prioritet: this.cells[2].innerHTML,
+          };
+
+          props.setChosenTask(rowData);
+        }
+      });
+    }
+  }, []);
+
   return (
     <div>
       <h2>Mine opgaver</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Titel</th>
+            <th>Type</th>
+            <th>Prioritet</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Operation</td>
+            <td>A</td>
+            <td>Høj</td>
+          </tr>
+          <tr>
+            <td>Vaccination</td>
+            <td>B</td>
+            <td>Medium</td>
+          </tr>
+          <tr>
+            <td>Lægetjek</td>
+            <td>C</td>
+            <td>Lav</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 }

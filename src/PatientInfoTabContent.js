@@ -5,9 +5,9 @@ function PatientInfoTabContent(props) {
   return (
     <div>
       <h3>Patient info</h3>
-      <p>Firstname: {props?.data?.firstname ? props.data.firstname : ""}</p>
-      <p>Lastname: {props?.data?.lastname ? props.data.lastname : ""}</p>
-      <p>Points: {props?.data?.points ? props.data.points : ""}</p>
+      <p>Fornavn: {props?.data?.fornavn ? props.data.fornavn : ""}</p>
+      <p>Efternavn: {props?.data?.efternavn ? props.data.efternavn : ""}</p>
+      <p>Alder: {props?.data?.alder ? props.data.alder : ""}</p>
     </div>
   );
 }

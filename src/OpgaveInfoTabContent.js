@@ -5,9 +5,9 @@ function OpgaveInfoTabContent(props) {
   return (
     <div>
       <h3>Opgave info</h3>
-      <p>Opgave 1: {props?.data?.firstname ? props.data.firstname : ""}</p>
-      <p>Opgave 2: {props?.data?.lastname ? props.data.lastname : ""}</p>
-      <p>Opgave 3: {props?.data?.points ? props.data.points : ""}</p>
+      <p>Titel: {props?.data?.titel ? props.data.titel : ""}</p>
+      <p>Type: {props?.data?.type ? props.data.type : ""}</p>
+      <p>Prioritet: {props?.data?.prioritet ? props.data.prioritet : ""}</p>
     </div>
   );
 }
