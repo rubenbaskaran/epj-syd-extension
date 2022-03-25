@@ -1,3 +1,7 @@
+body {
+  font-family: arial;
+}
+
 /* Menu & tab */
 
 .menu {
@@ -80,7 +84,7 @@ table {
 th {
   text-align: center;
   padding: 16px;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 td {
