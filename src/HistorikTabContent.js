@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 
-function ParisTabContent() {
+function HistorikTabContent() {
   return (
     <div>
       <h3>Historik</h3>
@@ -9,4 +9,4 @@ function ParisTabContent() {
   );
 }
 
-export default ParisTabContent;
+export default HistorikTabContent;

@@ -1,9 +1,11 @@
 import React from "react";
 import "./App.css";
 import PatientoversigtMenuContent from "./PatientoversigtMenuContent";
-import AfdelingsopgaverMenuContent from "./AfdelingsopgaverMenuContent";
-import OpgaveTabContent from "./OpgaveTabContent";
+import MineOpgaverMenuContent from "./MineOpgaverMenuContent";
+import PatientDataTabContent from "./PatientDataTabContent";
 import HistorikTabContent from "./HistorikTabContent";
+
+// TODO: Opret variabel til navnet på tab menuen til enten "Patient data" eller "Opgave" afhængig af "chosenMenuItem"
 
 function App() {
   const [chosenMenuItem, setChosenMenuItem] = React.useState(null);
@@ -90,10 +92,10 @@ function App() {
               Patientoversigt
             </button>
             <button
-              className={chosenMenuItem === "Afdelingsopgaver" ? "active" : ""}
-              onClick={() => setChosenMenuItem("Afdelingsopgaver")}
+              className={chosenMenuItem === "MineOpgaver" ? "active" : ""}
+              onClick={() => setChosenMenuItem("MineOpgaver")}
             >
-              Afdelingsopgaver
+              Mine opgaver
             </button>
           </div>
         </div>
@@ -120,9 +122,7 @@ function App() {
                   setChosenTableRow={setChosenTableRowData}
                 />
               )}
-              {chosenMenuItem === "Afdelingsopgaver" && (
-                <AfdelingsopgaverMenuContent />
-              )}
+              {chosenMenuItem === "MineOpgaver" && <MineOpgaverMenuContent />}
             </div>
           </div>
           <div
@@ -137,23 +137,23 @@ function App() {
             <div className="tab">
               <button
                 id="myBtn"
-                className={chosenTabItem === "London" ? "active" : ""}
-                onClick={() => setChosenTabItem("London")}
+                className={chosenTabItem === "LeftTab" ? "active" : ""}
+                onClick={() => setChosenTabItem("LeftTab")}
               >
-                Opgave
+                Patient data
               </button>
               <button
-                className={chosenTabItem === "Paris" ? "active" : ""}
-                onClick={() => setChosenTabItem("Paris")}
+                className={chosenTabItem === "RightTab" ? "active" : ""}
+                onClick={() => setChosenTabItem("RightTab")}
               >
                 Historik
               </button>
             </div>
             <div className="tabcontent">
-              {chosenTabItem === "London" && (
-                <OpgaveTabContent data={chosenTableRowData} />
+              {chosenTabItem === "LeftTab" && (
+                <PatientDataTabContent data={chosenTableRowData} />
               )}
-              {chosenTabItem === "Paris" && <HistorikTabContent />}
+              {chosenTabItem === "RightTab" && <HistorikTabContent />}
             </div>
           </div>
         </div>

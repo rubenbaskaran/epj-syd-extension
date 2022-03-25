@@ -1,6 +1,11 @@
 import React from "react";
 import "./App.css";
 
+// TODO
+// - Ret tekst i patientoversigt tabel
+// - Tilføj gyldig data til hver patient
+// - Tilføj en 4. patient
+
 function PatientoversigtMenuContent(props) {
   React.useEffect(() => {
     var trs = document.querySelectorAll("tbody tr");
