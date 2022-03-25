@@ -5,7 +5,9 @@ import MineOpgaverMenuContent from "./MineOpgaverMenuContent";
 import PatientDataTabContent from "./PatientDataTabContent";
 import HistorikTabContent from "./HistorikTabContent";
 
-// TODO: Opret variabel til navnet på tab menuen til enten "Patient data" eller "Opgave" afhængig af "chosenMenuItem"
+// TODO:
+// - Opret variabel til navnet på tab menuen til enten "Patient data" eller "Opgave" afhængig af "chosenMenuItem"
+// - Opret ny fil til at repræsentere tab indhold for "Opgave"
 
 function App() {
   const [chosenMenuItem, setChosenMenuItem] = React.useState(null);
