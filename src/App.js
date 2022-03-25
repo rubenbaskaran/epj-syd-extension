@@ -3,10 +3,11 @@ import "./App.css";
 import PatientoversigtMenuContent from "./PatientoversigtMenuContent";
 import MineOpgaverMenuContent from "./MineOpgaverMenuContent";
 import PatientInfoTabContent from "./PatientInfoTabContent";
+import OpgaveInfoTabContent from "./OpgaveInfoTabContent";
 import HistorikTabContent from "./HistorikTabContent";
 
 // TODO:
-// - Opret ny fil til at repræsentere tab indhold for "Opgave"
+// Get data from Mine opgaver and pass them to OpgaveInfoTabContent
 
 function App() {
   const [chosenMenuItem, setChosenMenuItem] = React.useState("Patientoversigt");
@@ -143,7 +144,7 @@ function App() {
               >
                 {chosenMenuItem === "Patientoversigt"
                   ? "Patient info"
-                  : "Opgave"}
+                  : "Opgave info"}
               </button>
               <button
                 className={chosenTabItem === "RightTab" ? "active" : ""}
@@ -153,9 +154,12 @@ function App() {
               </button>
             </div>
             <div className="tabcontent">
-              {chosenTabItem === "LeftTab" && (
-                <PatientInfoTabContent data={chosenTableRowData} />
-              )}
+              {chosenTabItem === "LeftTab" &&
+                (chosenMenuItem === "Patientoversigt" ? (
+                  <PatientInfoTabContent data={chosenTableRowData} />
+                ) : (
+                  <OpgaveInfoTabContent data={chosenTableRowData} />
+                ))}
               {chosenTabItem === "RightTab" && <HistorikTabContent />}
             </div>
           </div>
