@@ -49,7 +49,7 @@ function App() {
             paddingLeft: "10px",
           }}
         >
-          Odense Universitetshospital - Scendborg, OUH Kirurgisk Afsnit A, OUH
+          Odense Universitetshospital - Svendborg, OUH Kirurgisk Afsnit A, OUH
           Kirurgisk Afs. A1 (Odense)
         </div>
         <div
