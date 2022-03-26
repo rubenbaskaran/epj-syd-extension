@@ -6,19 +6,43 @@ import PatientInfoTabContent from "./PatientInfoTabContent";
 import OpgaveInfoTabContent from "./OpgaveInfoTabContent";
 import HistorikTabContent from "./HistorikTabContent";
 
-// TODO 3: Modtag objekt fra "PatientoversigtMenuContent", gem det her og send det videre til "MineOpgaverMenuContent"
-
 function App() {
   const [chosenMenuItem, setChosenMenuItem] = React.useState("Patientoversigt");
   const [chosenTabItem, setChosenTabItem] = React.useState(null);
   const [chosenPatient, setChosenPatient] = React.useState(null);
   const [chosenTask, setChosenTask] = React.useState(null);
+  const [tasks, setTasks] = React.useState([
+    { key: "1", titel: "Operation", type: "A", prioritet: "Høj" },
+    { key: "2", titel: "Vaccination", type: "B", prioritet: "Medium" },
+    { key: "3", titel: "Lægetjek", type: "C", prioritet: "Lav" },
+  ]);
 
   React.useEffect(() => {
-    if (chosenPatient != null || chosenPatient != null) {
+    if (chosenPatient != null || chosenTask != null) {
       document.getElementById("myBtn").click();
     }
   }, [chosenPatient, chosenTask]);
+
+  React.useEffect(() => {
+    // TODO 2: Call backend when new patient is chosen and only run this code if algorithm returns true
+    if (chosenPatient != null) {
+      const foundTask = tasks.find(
+        (task) => task.titel === chosenPatient.fornavn
+      );
+
+      if (!foundTask) {
+        setTasks([
+          ...tasks,
+          {
+            key: tasks.length + 1,
+            titel: chosenPatient.fornavn,
+            type: chosenPatient.efternavn,
+            prioritet: chosenPatient.alder,
+          },
+        ]);
+      }
+    }
+  }, [chosenPatient]);
 
   return (
     <div
@@ -131,7 +155,10 @@ function App() {
                 />
               )}
               {chosenMenuItem === "MineOpgaver" && (
-                <MineOpgaverMenuContent setChosenTask={setChosenTask} />
+                <MineOpgaverMenuContent
+                  setChosenTask={setChosenTask}
+                  tasks={tasks}
+                />
               )}
             </div>
           </div>

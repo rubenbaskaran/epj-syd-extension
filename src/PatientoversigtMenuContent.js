@@ -1,14 +1,13 @@
 import React from "react";
 import "./App.css";
 
-// TODO 2: Tilføj ny list item til Mine Opgaver, ved klik på en patient (sæt variabel modtaget via. props, så ny list item sendes til app.js)
-
 function PatientoversigtMenuContent(props) {
+  // TODO 1: Add real patient data for algorithm
   const [patients, setPatients] = React.useState([
-    { fornavn: "Jill", efternavn: "Smith", alder: "50" },
-    { fornavn: "Eva", efternavn: "Jensen", alder: "94" },
-    { fornavn: "Adam", efternavn: "Johnson", alder: "67" },
-    { fornavn: "Michael", efternavn: "Hansen", alder: "45" },
+    { key: "1", fornavn: "Jill", efternavn: "Smith", alder: "50" },
+    { key: "2", fornavn: "Eva", efternavn: "Jensen", alder: "94" },
+    { key: "3", fornavn: "Adam", efternavn: "Johnson", alder: "67" },
+    { key: "4", fornavn: "Michael", efternavn: "Hansen", alder: "45" },
   ]);
 
   React.useEffect(() => {
@@ -52,7 +51,7 @@ function PatientoversigtMenuContent(props) {
         </thead>
         <tbody>
           {patients.map((patient) => (
-            <tr>
+            <tr key={patient.key}>
               <td>{patient.fornavn}</td>
               <td>{patient.efternavn}</td>
               <td>{patient.alder}</td>

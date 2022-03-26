@@ -42,21 +42,13 @@ function MineOpgaverMenuContent(props) {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Operation</td>
-            <td>A</td>
-            <td>Høj</td>
-          </tr>
-          <tr>
-            <td>Vaccination</td>
-            <td>B</td>
-            <td>Medium</td>
-          </tr>
-          <tr>
-            <td>Lægetjek</td>
-            <td>C</td>
-            <td>Lav</td>
-          </tr>
+          {props.tasks.map((task) => (
+            <tr key={task.key}>
+              <td>{task.titel}</td>
+              <td>{task.type}</td>
+              <td>{task.prioritet}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
