@@ -1,10 +1,16 @@
 import React from "react";
 import "./App.css";
 
-// TODO 1: Tilføj object array med patient data og loop igennem det med map function
-// TODO 2: Vis dialog besked hvis algoritme er positiv (onClick event på patientoversigt tabel)
+// TODO 2: Tilføj ny list item til Mine Opgaver, ved klik på en patient (sæt variabel modtaget via. props, så ny list item sendes til app.js)
 
 function PatientoversigtMenuContent(props) {
+  const [patients, setPatients] = React.useState([
+    { fornavn: "Jill", efternavn: "Smith", alder: "50" },
+    { fornavn: "Eva", efternavn: "Jensen", alder: "94" },
+    { fornavn: "Adam", efternavn: "Johnson", alder: "67" },
+    { fornavn: "Michael", efternavn: "Hansen", alder: "45" },
+  ]);
+
   React.useEffect(() => {
     var trs = document.querySelectorAll("tbody tr");
     for (var i = 0; i < trs.length; i++) {
@@ -45,21 +51,13 @@ function PatientoversigtMenuContent(props) {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Jill</td>
-            <td>Smith</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-          </tr>
-          <tr>
-            <td>Adam</td>
-            <td>Johnson</td>
-            <td>67</td>
-          </tr>
+          {patients.map((patient) => (
+            <tr>
+              <td>{patient.fornavn}</td>
+              <td>{patient.efternavn}</td>
+              <td>{patient.alder}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

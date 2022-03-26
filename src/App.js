@@ -6,7 +6,7 @@ import PatientInfoTabContent from "./PatientInfoTabContent";
 import OpgaveInfoTabContent from "./OpgaveInfoTabContent";
 import HistorikTabContent from "./HistorikTabContent";
 
-// TODO 3: Modtag ny data fra "PatientoversigtMenuContent", opret et data object her og send det til "MineOpgaverMenuContent"
+// TODO 3: Modtag objekt fra "PatientoversigtMenuContent", gem det her og send det videre til "MineOpgaverMenuContent"
 
 function App() {
   const [chosenMenuItem, setChosenMenuItem] = React.useState("Patientoversigt");
