@@ -40,7 +40,15 @@ function App() {
   // ["DF10", 1, 50, 55, 0, 0, 1] --> 1
 
   React.useEffect(() => {
-    if (chosenPatient != null) {
+    if (loading !== true && chosenPatient !== null) {
+      const foundTask = tasks.find(
+        (task) => task.titel === chosenPatient.fornavn
+      );
+
+      if (foundTask) {
+        return;
+      }
+
       setLoading(true);
       const data = {
         diagnosis: "DF10", //chosenPatient.diagnosis,
@@ -61,7 +69,6 @@ function App() {
               break;
             case 1:
               console.log("Result was 1 (bad)");
-              // TODO 2: Show dialog
               AddNewTask();
               break;
             default:
@@ -81,21 +88,16 @@ function App() {
 
   function AddNewTask() {
     if (chosenPatient != null) {
-      const foundTask = tasks.find(
-        (task) => task.titel === chosenPatient.fornavn
-      );
-
-      if (!foundTask) {
-        setTasks([
-          ...tasks,
-          {
-            key: tasks.length + 1,
-            titel: chosenPatient.fornavn,
-            type: chosenPatient.efternavn,
-            prioritet: chosenPatient.alder,
-          },
-        ]);
-      }
+      setTasks([
+        ...tasks,
+        {
+          key: tasks.length + 1,
+          titel: chosenPatient.fornavn,
+          type: chosenPatient.efternavn,
+          prioritet: chosenPatient.alder,
+        },
+      ]);
+      // TODO 2: Show dialog
     }
   }
 
