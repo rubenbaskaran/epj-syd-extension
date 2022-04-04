@@ -80,7 +80,6 @@ function App() {
 
   function AddNewTask() {
     if (chosenPatient != null) {
-      console.log("addNewTaskEvent triggered");
       const foundTask = tasks.find(
         (task) => task.titel === chosenPatient.fornavn
       );
