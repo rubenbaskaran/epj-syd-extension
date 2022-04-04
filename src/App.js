@@ -13,7 +13,6 @@ function App() {
   const [chosenTabItem, setChosenTabItem] = React.useState(null);
   const [chosenPatient, setChosenPatient] = React.useState(null);
   const [chosenTask, setChosenTask] = React.useState(null);
-  const [addNewTaskEvent, setAddNewTaskEvent] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [tasks, setTasks] = React.useState([
     { key: "1", titel: "Operation", type: "A", prioritet: "Høj" },
@@ -62,7 +61,7 @@ function App() {
               break;
             case 1:
               console.log("Result was 1 (bad)");
-              setAddNewTaskEvent(!addNewTaskEvent);
+              AddNewTask();
               break;
             default:
               console.log("Result was invalid (error)");
@@ -79,7 +78,7 @@ function App() {
     }
   }, [chosenPatient]);
 
-  React.useEffect(() => {
+  function AddNewTask() {
     if (chosenPatient != null) {
       console.log("addNewTaskEvent triggered");
       const foundTask = tasks.find(
@@ -98,7 +97,7 @@ function App() {
         ]);
       }
     }
-  }, [addNewTaskEvent]);
+  }
 
   return (
     <div
