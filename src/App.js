@@ -5,12 +5,16 @@ import MineOpgaverMenuContent from "./MineOpgaverMenuContent";
 import PatientInfoTabContent from "./PatientInfoTabContent";
 import OpgaveInfoTabContent from "./OpgaveInfoTabContent";
 import HistorikTabContent from "./HistorikTabContent";
+import axios from "axios";
+import { CircularProgress } from "@mui/material";
 
 function App() {
   const [chosenMenuItem, setChosenMenuItem] = React.useState("Patientoversigt");
   const [chosenTabItem, setChosenTabItem] = React.useState(null);
   const [chosenPatient, setChosenPatient] = React.useState(null);
   const [chosenTask, setChosenTask] = React.useState(null);
+  const [addNewTaskEvent, setAddNewTaskEvent] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
   const [tasks, setTasks] = React.useState([
     { key: "1", titel: "Operation", type: "A", prioritet: "Høj" },
     { key: "2", titel: "Vaccination", type: "B", prioritet: "Medium" },
@@ -23,9 +27,61 @@ function App() {
     }
   }, [chosenPatient, chosenTask]);
 
+  // Diagnosis
+  // Gender
+  // Age
+  // Duration
+  // GoingToIcu
+  // CameThroughEd
+  // ContactType
+
+  // ["DF10", 2, 50, 0, 0, 0, 1] --> 1
+  // ["DZ03", 1, 35, 50, 0, 0, 2 ] --> 0
+  // ["DS72", 2, 100, 55, 0, 0, 1] --> 0
+  // ["DF10", 1, 50, 55, 0, 0, 1] --> 1
+
   React.useEffect(() => {
-    // TODO 2: Call backend when new patient is chosen and only run this code if algorithm returns true
     if (chosenPatient != null) {
+      setLoading(true);
+      const data = {
+        diagnosis: "DF10", //chosenPatient.diagnosis,
+        gender: 2, // chosenPatient.gender,
+        age: 50, //chosenPatient.age,
+        duration: 0, //chosenPatient.duration,
+        goingToIcu: 0, //chosenPatient.goingToIcu,
+        cameThroughEd: 0, //chosenPatient.cameThroughEd,
+        contactType: 1, //chosenPatient.contactType,
+      };
+
+      axios
+        .post("http://localhost:3001/submit", { data })
+        .then(function (response) {
+          switch (response.data.output) {
+            case 0:
+              console.log("Result was 0 (good)");
+              break;
+            case 1:
+              console.log("Result was 1 (bad)");
+              setAddNewTaskEvent(!addNewTaskEvent);
+              break;
+            default:
+              console.log("Result was invalid (error)");
+              break;
+          }
+
+          setLoading(false);
+        })
+        .catch(function (error) {
+          console.log("Connection error:");
+          console.log(error);
+          setLoading(false);
+        });
+    }
+  }, [chosenPatient]);
+
+  React.useEffect(() => {
+    if (chosenPatient != null) {
+      console.log("addNewTaskEvent triggered");
       const foundTask = tasks.find(
         (task) => task.titel === chosenPatient.fornavn
       );
@@ -42,7 +98,7 @@ function App() {
         ]);
       }
     }
-  }, [chosenPatient]);
+  }, [addNewTaskEvent]);
 
   return (
     <div
@@ -200,6 +256,20 @@ function App() {
           </div>
         </div>
       </div>
+      {loading && (
+        <div
+          style={{
+            position: "absolute",
+            left: "45%",
+            top: "40%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <CircularProgress style={{ width: "150px", height: "150px" }} />
+        </div>
+      )}
     </div>
   );
 }
