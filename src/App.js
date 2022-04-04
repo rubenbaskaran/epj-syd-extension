@@ -61,6 +61,7 @@ function App() {
               break;
             case 1:
               console.log("Result was 1 (bad)");
+              // TODO 2: Show dialog
               AddNewTask();
               break;
             default:
