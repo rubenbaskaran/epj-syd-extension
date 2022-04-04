@@ -28,7 +28,7 @@ function MineOpgaverMenuContent(props) {
         }
       });
     }
-  }, []);
+  }, [props]);
 
   return (
     <div>
