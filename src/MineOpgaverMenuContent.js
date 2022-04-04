@@ -1,34 +1,30 @@
 import React from "react";
 import "./App.css";
 
-function MineOpgaverMenuContent(props) {
+function MineOpgaverMenuContent({ setChosenTask, tasks }) {
   React.useEffect(() => {
     var trs = document.querySelectorAll("tbody tr");
     for (var i = 0; i < trs.length; i++) {
       var currentRow = trs[i];
 
       currentRow.addEventListener("click", function () {
-        if (this.className === "selected") {
-          this.className = "";
-        } else {
-          var trs = document.querySelectorAll("tr");
-          for (var i = 0; i < trs.length; i++) {
-            trs[i].className = "";
-          }
-
-          this.className = "selected";
-
-          var rowData = {
-            titel: this.cells[0].innerHTML,
-            type: this.cells[1].innerHTML,
-            prioritet: this.cells[2].innerHTML,
-          };
-
-          props.setChosenTask(rowData);
+        var trs = document.querySelectorAll("tr");
+        for (var i = 0; i < trs.length; i++) {
+          trs[i].className = "";
         }
+
+        this.className = "selected";
+
+        var rowData = {
+          titel: this.cells[0].innerHTML,
+          type: this.cells[1].innerHTML,
+          prioritet: this.cells[2].innerHTML,
+        };
+
+        setChosenTask(rowData);
       });
     }
-  }, [props]);
+  }, [tasks]);
 
   return (
     <div>
@@ -42,7 +38,7 @@ function MineOpgaverMenuContent(props) {
           </tr>
         </thead>
         <tbody>
-          {props.tasks.map((task) => (
+          {tasks.map((task) => (
             <tr key={task.key}>
               <td>{task.titel}</td>
               <td>{task.type}</td>
