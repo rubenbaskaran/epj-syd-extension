@@ -8,6 +8,8 @@ import HistorikTabContent from "./HistorikTabContent";
 import axios from "axios";
 import { CircularProgress } from "@mui/material";
 
+// TODO 1: Fix menu & tab content height
+
 function App() {
   const [chosenMenuItem, setChosenMenuItem] = React.useState("Patientoversigt");
   const [chosenTabItem, setChosenTabItem] = React.useState(null);
@@ -26,23 +28,10 @@ function App() {
     }
   }, [chosenPatient, chosenTask]);
 
-  // Diagnosis
-  // Gender
-  // Age
-  // Duration
-  // GoingToIcu
-  // CameThroughEd
-  // ContactType
-
-  // ["DF10", 2, 50, 0, 0, 0, 1] --> 1
-  // ["DZ03", 1, 35, 50, 0, 0, 2 ] --> 0
-  // ["DS72", 2, 100, 55, 0, 0, 1] --> 0
-  // ["DF10", 1, 50, 55, 0, 0, 1] --> 1
-
   React.useEffect(() => {
     if (loading !== true && chosenPatient !== null) {
       const foundTask = tasks.find(
-        (task) => task.titel === chosenPatient.fornavn
+        (task) => task.titel === chosenPatient.firstname
       );
 
       if (foundTask) {
@@ -51,13 +40,13 @@ function App() {
 
       setLoading(true);
       const data = {
-        diagnosis: "DF10", //chosenPatient.diagnosis,
-        gender: 2, // chosenPatient.gender,
-        age: 50, //chosenPatient.age,
-        duration: 0, //chosenPatient.duration,
-        goingToIcu: 0, //chosenPatient.goingToIcu,
-        cameThroughEd: 0, //chosenPatient.cameThroughEd,
-        contactType: 1, //chosenPatient.contactType,
+        diagnosis: chosenPatient.diagnosis,
+        gender: chosenPatient.gender,
+        age: chosenPatient.age,
+        duration: chosenPatient.duration,
+        goingToIcu: chosenPatient.goingtoicu,
+        cameThroughEd: chosenPatient.camethroughed,
+        contactType: chosenPatient.contacttype,
       };
 
       axios
@@ -86,18 +75,19 @@ function App() {
     }
   }, [chosenPatient]);
 
+  // TODO 2: Change task info to AUD task
   function AddNewTask() {
     if (chosenPatient != null) {
       setTasks([
         ...tasks,
         {
           key: tasks.length + 1,
-          titel: chosenPatient.fornavn,
-          type: chosenPatient.efternavn,
-          prioritet: chosenPatient.alder,
+          titel: chosenPatient.firstname,
+          type: chosenPatient.lastname,
+          prioritet: chosenPatient.age,
         },
       ]);
-      // TODO 2: Show dialog
+      // TODO 3: Show dialog
     }
   }
 

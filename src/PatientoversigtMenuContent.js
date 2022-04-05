@@ -1,13 +1,69 @@
 import React from "react";
 import "./App.css";
 
+// diagnosis
+// gender
+// age
+// duration
+// goingtoicu
+// camethroughed
+// contacttype
+
+// ["DF10", 2, 50, 0, 0, 0, 1] --> 1
+// ["DZ03", 1, 35, 50, 0, 0, 2 ] --> 0
+// ["DS72", 2, 100, 55, 0, 0, 1] --> 0
+// ["DF10", 1, 50, 55, 0, 0, 1] --> 1
+
 function PatientoversigtMenuContent(props) {
-  // TODO 1: Add real patient data for algorithm
   const [patients, setPatients] = React.useState([
-    { key: "1", fornavn: "Jill", efternavn: "Smith", alder: "50" },
-    { key: "2", fornavn: "Eva", efternavn: "Jensen", alder: "94" },
-    { key: "3", fornavn: "Adam", efternavn: "Johnson", alder: "67" },
-    { key: "4", fornavn: "Michael", efternavn: "Hansen", alder: "45" },
+    {
+      key: "1",
+      firstname: "Jill",
+      lastname: "Smith",
+      diagnosis: "DF10",
+      gender: 2,
+      age: 50,
+      duration: 0,
+      goingtoicu: 0,
+      camethroughed: 0,
+      contacttype: 1,
+    },
+    {
+      key: "2",
+      firstname: "Adam",
+      lastname: "Jensen",
+      diagnosis: "DZ03",
+      gender: 1,
+      age: 35,
+      duration: 50,
+      goingtoicu: 0,
+      camethroughed: 0,
+      contacttype: 2,
+    },
+    {
+      key: "3",
+      firstname: "Eva",
+      lastname: "Johnson",
+      diagnosis: "DS72",
+      gender: 2,
+      age: 100,
+      duration: 55,
+      goingtoicu: 0,
+      camethroughed: 0,
+      contacttype: 1,
+    },
+    {
+      key: "4",
+      firstname: "Michael",
+      lastname: "Hansen",
+      diagnosis: "DF10",
+      gender: 1,
+      age: 50,
+      duration: 55,
+      goingtoicu: 0,
+      camethroughed: 0,
+      contacttype: 1,
+    },
   ]);
 
   React.useEffect(() => {
@@ -26,11 +82,9 @@ function PatientoversigtMenuContent(props) {
 
           this.className = "selected";
 
-          var rowData = {
-            fornavn: this.cells[0].innerHTML,
-            efternavn: this.cells[1].innerHTML,
-            alder: this.cells[2].innerHTML,
-          };
+          var rowData = patients.find(
+            (patient) => patient.key === this.cells[0].innerHTML
+          );
 
           props.setChosenPatient(rowData);
         }
@@ -44,17 +98,17 @@ function PatientoversigtMenuContent(props) {
       <table>
         <thead>
           <tr>
+            <th>ID</th>
             <th>Fornavn</th>
             <th>Efternavn</th>
-            <th>Alder</th>
           </tr>
         </thead>
         <tbody>
           {patients.map((patient) => (
             <tr key={patient.key}>
-              <td>{patient.fornavn}</td>
-              <td>{patient.efternavn}</td>
-              <td>{patient.alder}</td>
+              <td>{patient.key}</td>
+              <td>{patient.firstname}</td>
+              <td>{patient.lastname}</td>
             </tr>
           ))}
         </tbody>
