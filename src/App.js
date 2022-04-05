@@ -31,7 +31,8 @@ function App() {
   React.useEffect(() => {
     if (loading !== true && chosenPatient !== null) {
       const foundTask = tasks.find(
-        (task) => task.titel === chosenPatient.firstname
+        (task) =>
+          task.titel === chosenPatient.firstname + " " + chosenPatient.lastname
       );
 
       if (foundTask) {
@@ -75,19 +76,18 @@ function App() {
     }
   }, [chosenPatient]);
 
-  // TODO 2: Change task info to AUD task
   function AddNewTask() {
     if (chosenPatient != null) {
       setTasks([
         ...tasks,
         {
           key: tasks.length + 1,
-          titel: chosenPatient.firstname,
-          type: chosenPatient.lastname,
-          prioritet: chosenPatient.age,
+          titel: chosenPatient.firstname + " " + chosenPatient.lastname,
+          type: "AUD",
+          prioritet: "Høj",
         },
       ]);
-      // TODO 3: Show dialog
+      // TODO 2: Show dialog
     }
   }
 
