@@ -164,6 +164,7 @@ function App() {
             flex: 1,
             marginTop: 10,
             marginLeft: 5,
+            marginBottom: 10,
             backgroundColor: "white",
             border: "1px solid #7f7f7f",
           }}
