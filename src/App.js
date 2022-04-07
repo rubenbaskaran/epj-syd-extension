@@ -20,6 +20,15 @@ function App() {
     { key: "1", titel: "Operation", type: "A", prioritet: "Høj" },
     { key: "2", titel: "Vaccination", type: "B", prioritet: "Medium" },
     { key: "3", titel: "Lægetjek", type: "C", prioritet: "Lav" },
+    { key: "4", titel: "Operation", type: "A", prioritet: "Høj" },
+    { key: "5", titel: "Vaccination", type: "B", prioritet: "Medium" },
+    { key: "6", titel: "Lægetjek", type: "C", prioritet: "Lav" },
+    { key: "7", titel: "Operation", type: "A", prioritet: "Høj" },
+    { key: "8", titel: "Vaccination", type: "B", prioritet: "Medium" },
+    { key: "9", titel: "Lægetjek", type: "C", prioritet: "Lav" },
+    { key: "10", titel: "Operation", type: "A", prioritet: "Høj" },
+    { key: "11", titel: "Vaccination", type: "B", prioritet: "Medium" },
+    { key: "12", titel: "Lægetjek", type: "C", prioritet: "Lav" },
   ]);
 
   React.useEffect(() => {
@@ -98,12 +107,14 @@ function App() {
         flexDirection: "column",
         height: "99.7vh",
         width: "99.7vw",
+        minHeight: "600px",
+        minWidth: "800px",
       }}
     >
       <div
         style={{
           display: "flex",
-          flex: 1,
+          minHeight: "10%",
           flexDirection: "column",
         }}
       >
@@ -142,7 +153,7 @@ function App() {
       <div
         style={{
           display: "flex",
-          flex: 9,
+          minHeight: "90%",
           flexDirection: "row",
         }}
       >
