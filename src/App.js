@@ -8,7 +8,7 @@ import HistorikTabContent from "./HistorikTabContent";
 import axios from "axios";
 import { CircularProgress } from "@mui/material";
 
-// TODO 1: Fix menu & tab content height
+// TODO 2: Copy-paste data upload function
 
 function App() {
   const [chosenMenuItem, setChosenMenuItem] = React.useState("Patientoversigt");
@@ -96,7 +96,7 @@ function App() {
           prioritet: "Høj",
         },
       ]);
-      // TODO 2: Show dialog
+      // TODO 1: Show dialog
     }
   }
 
