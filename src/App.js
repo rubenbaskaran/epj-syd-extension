@@ -186,34 +186,21 @@ function App() {
             height: "100%",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              flex: 7,
-              width: "100%",
-              backgroundColor: "white",
-            }}
-          >
-            <div className="menucontent">
-              {chosenMenuItem === "Patientoversigt" && (
-                <PatientoversigtMenuContent
-                  setChosenPatient={setChosenPatient}
-                />
-              )}
-              {chosenMenuItem === "MineOpgaver" && (
-                <MineOpgaverMenuContent
-                  setChosenTask={setChosenTask}
-                  tasks={tasks}
-                />
-              )}
-            </div>
+          <div className="menucontent">
+            {chosenMenuItem === "Patientoversigt" && (
+              <PatientoversigtMenuContent setChosenPatient={setChosenPatient} />
+            )}
+            {chosenMenuItem === "MineOpgaver" && (
+              <MineOpgaverMenuContent
+                setChosenTask={setChosenTask}
+                tasks={tasks}
+              />
+            )}
           </div>
           <div
             style={{
               display: "flex",
               flexDirection: "column",
-              flex: 3,
               width: "100%",
               backgroundColor: "white",
             }}
@@ -235,15 +222,15 @@ function App() {
                 Historik
               </button>
             </div>
-            <div className="tabcontent">
-              {chosenTabItem === "LeftTab" &&
-                (chosenMenuItem === "Patientoversigt" ? (
-                  <PatientInfoTabContent data={chosenPatient} />
-                ) : (
-                  <OpgaveInfoTabContent data={chosenTask} />
-                ))}
-              {chosenTabItem === "RightTab" && <HistorikTabContent />}
-            </div>
+          </div>
+          <div className="tabcontent">
+            {chosenTabItem === "LeftTab" &&
+              (chosenMenuItem === "Patientoversigt" ? (
+                <PatientInfoTabContent data={chosenPatient} />
+              ) : (
+                <OpgaveInfoTabContent data={chosenTask} />
+              ))}
+            {chosenTabItem === "RightTab" && <HistorikTabContent />}
           </div>
         </div>
       </div>

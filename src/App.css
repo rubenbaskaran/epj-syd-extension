@@ -57,18 +57,28 @@ body {
 }
 
 .menucontent {
-  padding-left: 12px;
+  display: "flex";
+  flex-direction: "column";
+  flex: 7;
+  overflow: auto;
+  width: "100%";
+  background-color: "white";
   border: 1px solid #7f7f7f;
-  height: 100%;
+  padding-left: 12px;
   margin-left: 10px;
   margin-bottom: 10px;
   margin-top: 10px;
 }
 
 .tabcontent {
-  padding-left: 12px;
+  display: "flex";
+  flex-direction: "column";
+  flex: 3;
+  overflow: auto;
+  width: "100%";
+  background-color: "white";
   border: 1px solid #7f7f7f;
-  height: 100%;
+  padding-left: 12px;
   margin-left: 10px;
 }
 
