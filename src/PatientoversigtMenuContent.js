@@ -109,28 +109,43 @@ function PatientoversigtMenuContent(props) {
   return (
     <div>
       <div
-        style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+        style={{
+          display: "flex",
+          flexDirection: "row",
+        }}
       >
-        <label htmlFor="input">
-          <Input
-            id="input"
-            type="file"
-            accept=".csv"
-            onChange={(event) => handleFiles(event)}
-          />
-          <FontAwesomeIcon
-            id="input"
-            icon={faFileArrowUp}
-            style={{
-              color: "#234E5E",
-              marginRight: 10,
-              marginBottom: 3,
-              height: "25px",
-              width: "25px",
-            }}
-          />
-        </label>
-        <h2>Patientoversigt</h2>
+        <div>
+          <h2>Patientoversigt</h2>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "end",
+            alignItems: "center",
+          }}
+        >
+          <label htmlFor="input">
+            <Input
+              id="input"
+              type="file"
+              accept=".csv"
+              onChange={(event) => handleFiles(event)}
+            />
+            <FontAwesomeIcon
+              id="input"
+              icon={faFileArrowUp}
+              style={{
+                color: "#234E5E",
+                marginRight: 10,
+                marginBottom: 3,
+                height: "30px",
+                width: "30px",
+                cursor: "pointer",
+              }}
+            />
+          </label>
+        </div>
       </div>
       <table>
         <thead>
