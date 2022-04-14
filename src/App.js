@@ -5,16 +5,19 @@ import MineOpgaverMenuContent from "./MineOpgaverMenuContent";
 import PatientInfoTabContent from "./PatientInfoTabContent";
 import OpgaveInfoTabContent from "./OpgaveInfoTabContent";
 import HistorikTabContent from "./HistorikTabContent";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { CircularProgress } from "@mui/material";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
+import {
+  CircularProgress,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Button,
+  Dialog,
+} from "@mui/material";
 
-// TODO 2: Copy-paste data upload function
+// TODO 1: Copy-paste data upload function
 
 function App() {
   const [chosenMenuItem, setChosenMenuItem] = React.useState("Patientoversigt");
@@ -23,28 +26,12 @@ function App() {
   const [chosenTask, setChosenTask] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
   const [showDialog, setShowDialog] = React.useState(false);
+  const [dialogFullname, setDialogFullname] = React.useState("");
   const [tasks, setTasks] = React.useState([
     { key: "1", titel: "Operation", type: "A", prioritet: "Høj" },
     { key: "2", titel: "Vaccination", type: "B", prioritet: "Medium" },
     { key: "3", titel: "Lægetjek", type: "C", prioritet: "Lav" },
-    // { key: "4", titel: "Operation", type: "A", prioritet: "Høj" },
-    // { key: "5", titel: "Vaccination", type: "B", prioritet: "Medium" },
-    // { key: "6", titel: "Lægetjek", type: "C", prioritet: "Lav" },
-    // { key: "7", titel: "Operation", type: "A", prioritet: "Høj" },
-    // { key: "8", titel: "Vaccination", type: "B", prioritet: "Medium" },
-    // { key: "9", titel: "Lægetjek", type: "C", prioritet: "Lav" },
-    // { key: "10", titel: "Operation", type: "A", prioritet: "Høj" },
-    // { key: "11", titel: "Vaccination", type: "B", prioritet: "Medium" },
-    // { key: "12", titel: "Lægetjek", type: "C", prioritet: "Lav" },
   ]);
-
-  const handleDialogOpen = () => {
-    setShowDialog(true);
-  };
-
-  const handleDialogClose = () => {
-    setShowDialog(false);
-  };
 
   React.useEffect(() => {
     if (chosenPatient != null || chosenTask != null) {
@@ -111,9 +98,18 @@ function App() {
           prioritet: "Høj",
         },
       ]);
-      handleDialogOpen();
+      handleDialogOpen(chosenPatient.firstname + " " + chosenPatient.lastname);
     }
   }
+
+  const handleDialogOpen = (fullname) => {
+    setShowDialog(true);
+    setDialogFullname(fullname);
+  };
+
+  const handleDialogClose = () => {
+    setShowDialog(false);
+  };
 
   return (
     <div
@@ -132,11 +128,23 @@ function App() {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"OBS!"}</DialogTitle>
+        <DialogTitle>
+          <FontAwesomeIcon
+            icon={faCircleExclamation}
+            style={{
+              color: "#234E5E",
+              marginRight: 10,
+              marginBottom: -2,
+              height: "25px",
+              width: "25px",
+            }}
+          />
+          Ny opgave tilføjet
+        </DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            En ny AUD opgave er blevet tilføjet
-          </DialogContentText>
+          Denne patient kræver AUD behandling
+          <br />
+          <br />- {dialogFullname}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleDialogClose}>OK</Button>
@@ -155,16 +163,39 @@ function App() {
             flex: 2,
             backgroundColor: "#234E5E",
             color: "white",
-            alignItems: "center",
-            fontFamily: "arial",
-            fontSize: "16px",
-            fontWeight: "bold",
-            paddingLeft: "10px",
+            flexDirection: "row",
           }}
         >
-          Odense Universitetshospital - Svendborg, OUH Kirurgisk Afsnit A, OUH
-          Kirurgisk Afs. A1 (Odense)
+          <div
+            style={{
+              display: "flex",
+              flex: 9,
+              color: "white",
+              alignItems: "center",
+              fontFamily: "arial",
+              fontSize: "16px",
+              fontWeight: "bold",
+              paddingLeft: "10px",
+            }}
+          >
+            Odense Universitetshospital - Svendborg, OUH Kirurgisk Afsnit A, OUH
+            Kirurgisk Afs. A1 (Odense)
+          </div>
+          {loading && (
+            <div
+              style={{
+                display: "flex",
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "right",
+                paddingRight: "10px",
+              }}
+            >
+              <CircularProgress />
+            </div>
+          )}
         </div>
+
         <div
           style={{
             display: "flex",
@@ -277,20 +308,6 @@ function App() {
           </div>
         </div>
       </div>
-      {loading && (
-        <div
-          style={{
-            position: "absolute",
-            left: "45%",
-            top: "40%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <CircularProgress style={{ width: "150px", height: "150px" }} />
-        </div>
-      )}
     </div>
   );
 }
