@@ -1,5 +1,7 @@
 import React from "react";
 import "./App.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileArrowUp } from "@fortawesome/free-solid-svg-icons";
 
 // diagnosis
 // gender
@@ -13,6 +15,8 @@ import "./App.css";
 // ["DZ03", 1, 35, 50, 0, 0, 2 ] --> 0
 // ["DS72", 2, 100, 55, 0, 0, 1] --> 0
 // ["DF10", 1, 50, 55, 0, 0, 1] --> 1
+
+// TODO 1: Copy-paste data upload function
 
 function PatientoversigtMenuContent(props) {
   const [patients, setPatients] = React.useState([
@@ -190,7 +194,24 @@ function PatientoversigtMenuContent(props) {
 
   return (
     <div>
-      <h2>Patientoversigt</h2>
+      <div
+        style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+      >
+        <FontAwesomeIcon
+          icon={faFileArrowUp}
+          onClick={() => {
+            console.log("hello!!");
+          }}
+          style={{
+            color: "#234E5E",
+            marginRight: 10,
+            marginBottom: 3,
+            height: "25px",
+            width: "25px",
+          }}
+        />
+        <h2>Patientoversigt</h2>
+      </div>
       <table>
         <thead>
           <tr>

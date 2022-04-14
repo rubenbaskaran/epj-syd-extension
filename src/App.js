@@ -17,8 +17,6 @@ import {
   Dialog,
 } from "@mui/material";
 
-// TODO 1: Copy-paste data upload function
-
 function App() {
   const [chosenMenuItem, setChosenMenuItem] = React.useState("Patientoversigt");
   const [chosenTabItem, setChosenTabItem] = React.useState(null);
