@@ -22,31 +22,42 @@ import { Button, styled } from "@mui/material";
 function PatientoversigtMenuContent(props) {
   const [filename, setFilename] = React.useState(null);
 
+  function CustomEventHandler() {
+    if (this.className === "selected") {
+      this.className = "";
+    } else {
+      var trs = document.querySelectorAll("tr");
+      for (var i = 0; i < trs.length; i++) {
+        trs[i].className = "";
+      }
+
+      this.className = "selected";
+
+      var rowData = props.patients.find(
+        (patient) => patient.key === this.cells[0].innerHTML
+      );
+
+      props.setChosenPatient(rowData);
+    }
+  }
+
   React.useEffect(() => {
     var trs = document.querySelectorAll("tbody tr");
     for (var i = 0; i < trs.length; i++) {
       var currentRow = trs[i];
 
-      currentRow.addEventListener("click", function () {
-        if (this.className === "selected") {
-          this.className = "";
-        } else {
-          var trs = document.querySelectorAll("tr");
-          for (var i = 0; i < trs.length; i++) {
-            trs[i].className = "";
-          }
-
-          this.className = "selected";
-
-          var rowData = props.patients.find(
-            (patient) => patient.key === this.cells[0].innerHTML
-          );
-
-          props.setChosenPatient(rowData);
-        }
-      });
+      currentRow.addEventListener("click", CustomEventHandler);
     }
-  }, []);
+
+    return () => {
+      var trs = document.querySelectorAll("tbody tr");
+      for (var i = 0; i < trs.length; i++) {
+        var currentRow = trs[i];
+
+        currentRow.removeEventListener("click", CustomEventHandler);
+      }
+    };
+  }, [props.patients]);
 
   const Input = styled("input")({
     display: "none",
