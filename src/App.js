@@ -7,6 +7,12 @@ import OpgaveInfoTabContent from "./OpgaveInfoTabContent";
 import HistorikTabContent from "./HistorikTabContent";
 import axios from "axios";
 import { CircularProgress } from "@mui/material";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 // TODO 2: Copy-paste data upload function
 
@@ -16,6 +22,7 @@ function App() {
   const [chosenPatient, setChosenPatient] = React.useState(null);
   const [chosenTask, setChosenTask] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
+  const [showDialog, setShowDialog] = React.useState(false);
   const [tasks, setTasks] = React.useState([
     { key: "1", titel: "Operation", type: "A", prioritet: "Høj" },
     { key: "2", titel: "Vaccination", type: "B", prioritet: "Medium" },
@@ -30,6 +37,14 @@ function App() {
     { key: "11", titel: "Vaccination", type: "B", prioritet: "Medium" },
     { key: "12", titel: "Lægetjek", type: "C", prioritet: "Lav" },
   ]);
+
+  const handleDialogOpen = () => {
+    setShowDialog(true);
+  };
+
+  const handleDialogClose = () => {
+    setShowDialog(false);
+  };
 
   React.useEffect(() => {
     if (chosenPatient != null || chosenTask != null) {
@@ -96,7 +111,7 @@ function App() {
           prioritet: "Høj",
         },
       ]);
-      // TODO 1: Show dialog
+      handleDialogOpen();
     }
   }
 
@@ -111,6 +126,22 @@ function App() {
         minWidth: "800px",
       }}
     >
+      <Dialog
+        open={showDialog}
+        onClose={handleDialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"OBS!"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            En ny AUD opgave er blevet tilføjet
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDialogClose}>OK</Button>
+        </DialogActions>
+      </Dialog>
       <div
         style={{
           display: "flex",
