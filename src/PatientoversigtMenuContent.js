@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { Button, styled } from "@mui/material";
 
 // diagnosis
 // gender
@@ -19,6 +20,7 @@ import { faFileArrowUp } from "@fortawesome/free-solid-svg-icons";
 // TODO 1: Copy-paste data upload function
 
 function PatientoversigtMenuContent(props) {
+  const [filename, setFilename] = React.useState(null);
   const [patients, setPatients] = React.useState([
     {
       key: "1",
@@ -68,102 +70,6 @@ function PatientoversigtMenuContent(props) {
       camethroughed: 0,
       contacttype: 1,
     },
-    // {
-    //   key: "5",
-    //   firstname: "Jill",
-    //   lastname: "Smith",
-    //   diagnosis: "DF10",
-    //   gender: 2,
-    //   age: 50,
-    //   duration: 0,
-    //   goingtoicu: 0,
-    //   camethroughed: 0,
-    //   contacttype: 1,
-    // },
-    // {
-    //   key: "6",
-    //   firstname: "Adam",
-    //   lastname: "Jensen",
-    //   diagnosis: "DZ03",
-    //   gender: 1,
-    //   age: 35,
-    //   duration: 50,
-    //   goingtoicu: 0,
-    //   camethroughed: 0,
-    //   contacttype: 2,
-    // },
-    // {
-    //   key: "7",
-    //   firstname: "Eva",
-    //   lastname: "Johnson",
-    //   diagnosis: "DS72",
-    //   gender: 2,
-    //   age: 100,
-    //   duration: 55,
-    //   goingtoicu: 0,
-    //   camethroughed: 0,
-    //   contacttype: 1,
-    // },
-    // {
-    //   key: "8",
-    //   firstname: "Michael",
-    //   lastname: "Hansen",
-    //   diagnosis: "DF10",
-    //   gender: 1,
-    //   age: 50,
-    //   duration: 55,
-    //   goingtoicu: 0,
-    //   camethroughed: 0,
-    //   contacttype: 1,
-    // },
-    // {
-    //   key: "9",
-    //   firstname: "Jill",
-    //   lastname: "Smith",
-    //   diagnosis: "DF10",
-    //   gender: 2,
-    //   age: 50,
-    //   duration: 0,
-    //   goingtoicu: 0,
-    //   camethroughed: 0,
-    //   contacttype: 1,
-    // },
-    // {
-    //   key: "10",
-    //   firstname: "Adam",
-    //   lastname: "Jensen",
-    //   diagnosis: "DZ03",
-    //   gender: 1,
-    //   age: 35,
-    //   duration: 50,
-    //   goingtoicu: 0,
-    //   camethroughed: 0,
-    //   contacttype: 2,
-    // },
-    // {
-    //   key: "11",
-    //   firstname: "Eva",
-    //   lastname: "Johnson",
-    //   diagnosis: "DS72",
-    //   gender: 2,
-    //   age: 100,
-    //   duration: 55,
-    //   goingtoicu: 0,
-    //   camethroughed: 0,
-    //   contacttype: 1,
-    // },
-    // {
-    //   key: "12",
-    //   firstname: "Michael",
-    //   lastname: "Hansen",
-    //   diagnosis: "DF10",
-    //   gender: 1,
-    //   age: 50,
-    //   duration: 55,
-    //   goingtoicu: 0,
-    //   camethroughed: 0,
-    //   contacttype: 1,
-    // },
   ]);
 
   React.useEffect(() => {
@@ -192,24 +98,81 @@ function PatientoversigtMenuContent(props) {
     }
   }, []);
 
+  const Input = styled("input")({
+    display: "none",
+  });
+
+  function handleFiles(data) {
+    const file = data.target.files[0];
+
+    if (!file) {
+      return;
+    }
+
+    setFilename(file.name);
+    const reader = new FileReader();
+    reader.readAsText(file);
+
+    reader.onload = function () {
+      const extractedData = Array.from(reader.result.split("\r\n"));
+      var listOfLoadedPatients = [];
+
+      extractedData.forEach((item) => {
+        const singlePatientData = Array.from(item.split(","));
+
+        const newLoadedPatient = {
+          key: String(listOfLoadedPatients.length + 1),
+          firstname: String(singlePatientData[0]),
+          lastname: String(singlePatientData[1]),
+          diagnosis: String(singlePatientData[2]),
+          gender: parseInt(singlePatientData[3]),
+          age: parseInt(singlePatientData[4]),
+          duration: parseInt(singlePatientData[5]),
+          goingtoicu: parseInt(singlePatientData[6]),
+          camethroughed: parseInt(singlePatientData[7]),
+          contacttype: parseInt(singlePatientData[8]),
+        };
+
+        listOfLoadedPatients.push(newLoadedPatient);
+      });
+
+      props.setChosenPatient(null);
+      setPatients(listOfLoadedPatients);
+    };
+
+    reader.onerror = function () {
+      console.log(reader.error);
+    };
+  }
+
+  React.useEffect(() => {
+    console.log(patients);
+  }, [patients]);
+
   return (
     <div>
       <div
         style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
       >
-        <FontAwesomeIcon
-          icon={faFileArrowUp}
-          onClick={() => {
-            console.log("hello!!");
-          }}
-          style={{
-            color: "#234E5E",
-            marginRight: 10,
-            marginBottom: 3,
-            height: "25px",
-            width: "25px",
-          }}
-        />
+        <label htmlFor="input">
+          <Input
+            id="input"
+            type="file"
+            accept=".csv"
+            onChange={(event) => handleFiles(event)}
+          />
+          <FontAwesomeIcon
+            id="input"
+            icon={faFileArrowUp}
+            style={{
+              color: "#234E5E",
+              marginRight: 10,
+              marginBottom: 3,
+              height: "25px",
+              width: "25px",
+            }}
+          />
+        </label>
         <h2>Patientoversigt</h2>
       </div>
       <table>
