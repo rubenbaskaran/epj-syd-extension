@@ -30,6 +30,56 @@ function App() {
     { key: "2", titel: "Vaccination", type: "B", prioritet: "Medium" },
     { key: "3", titel: "Lægetjek", type: "C", prioritet: "Lav" },
   ]);
+  const [patients, setPatients] = React.useState([
+    {
+      key: "1",
+      firstname: "Jill",
+      lastname: "Smith",
+      diagnosis: "DF10",
+      gender: 2,
+      age: 50,
+      duration: 0,
+      goingtoicu: 0,
+      camethroughed: 0,
+      contacttype: 1,
+    },
+    {
+      key: "2",
+      firstname: "Adam",
+      lastname: "Jensen",
+      diagnosis: "DZ03",
+      gender: 1,
+      age: 35,
+      duration: 50,
+      goingtoicu: 0,
+      camethroughed: 0,
+      contacttype: 2,
+    },
+    {
+      key: "3",
+      firstname: "Eva",
+      lastname: "Johnson",
+      diagnosis: "DS72",
+      gender: 2,
+      age: 100,
+      duration: 55,
+      goingtoicu: 0,
+      camethroughed: 0,
+      contacttype: 1,
+    },
+    {
+      key: "4",
+      firstname: "Michael",
+      lastname: "Hansen",
+      diagnosis: "DF10",
+      gender: 1,
+      age: 50,
+      duration: 55,
+      goingtoicu: 0,
+      camethroughed: 0,
+      contacttype: 1,
+    },
+  ]);
 
   React.useEffect(() => {
     if (chosenPatient != null || chosenTask != null) {
@@ -260,7 +310,11 @@ function App() {
         >
           <div className="menucontent">
             {chosenMenuItem === "Patientoversigt" && (
-              <PatientoversigtMenuContent setChosenPatient={setChosenPatient} />
+              <PatientoversigtMenuContent
+                setChosenPatient={setChosenPatient}
+                patients={patients}
+                setPatients={setPatients}
+              />
             )}
             {chosenMenuItem === "MineOpgaver" && (
               <MineOpgaverMenuContent
