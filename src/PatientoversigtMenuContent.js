@@ -17,11 +17,7 @@ import { Button, styled } from "@mui/material";
 // ["DS72", 2, 100, 55, 0, 0, 1] --> 0
 // ["DF10", 1, 50, 55, 0, 0, 1] --> 1
 
-// TODO 1: Copy-paste data upload function
-
 function PatientoversigtMenuContent(props) {
-  const [filename, setFilename] = React.useState(null);
-
   function CustomEventHandler() {
     if (this.className === "selected") {
       this.className = "";
@@ -70,7 +66,6 @@ function PatientoversigtMenuContent(props) {
       return;
     }
 
-    setFilename(file.name);
     const reader = new FileReader();
     reader.readAsText(file);
 
