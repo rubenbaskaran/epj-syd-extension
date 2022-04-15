@@ -88,7 +88,7 @@ function App() {
   }, [chosenPatient, chosenTask]);
 
   React.useEffect(() => {
-    if (loading !== true && chosenPatient !== null) {
+    if (chosenPatient !== null) {
       const foundTask = tasks.find(
         (task) =>
           task.titel === chosenPatient.firstname + " " + chosenPatient.lastname
@@ -137,10 +137,10 @@ function App() {
 
   function AddNewTask() {
     if (chosenPatient != null) {
-      setTasks([
-        ...tasks,
+      setTasks((oldData) => [
+        ...oldData,
         {
-          key: tasks.length + 1,
+          key: String(oldData.length + 1),
           titel: chosenPatient.firstname + " " + chosenPatient.lastname,
           type: "AUD",
           prioritet: "Høj",
