@@ -76,6 +76,10 @@ function PatientoversigtMenuContent(props) {
       extractedData.forEach((item) => {
         const singlePatientData = Array.from(item.split(","));
 
+        if (singlePatientData.length !== 9) {
+          return;
+        }
+
         const newLoadedPatient = {
           key: String(listOfLoadedPatients.length + 1),
           firstname: String(singlePatientData[0]),
