@@ -2,20 +2,7 @@ import React from "react";
 import "./App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileArrowUp } from "@fortawesome/free-solid-svg-icons";
-import { Button, styled } from "@mui/material";
-
-// icd_1
-// gender
-// age
-// los_1
-// going_to_icu_1
-// came_through_ed_1
-// contact_type_1
-
-// ["DF10", 2, 50, 0, 0, 0, 1] --> 1
-// ["DZ03", 1, 35, 50, 0, 0, 2 ] --> 0
-// ["DS72", 2, 100, 55, 0, 0, 1] --> 0
-// ["DF10", 1, 50, 55, 0, 0, 1] --> 1
+import { styled } from "@mui/material";
 
 function PatientoversigtMenuContent(props) {
   function CustomEventHandler() {
