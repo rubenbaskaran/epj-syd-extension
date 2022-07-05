@@ -75,23 +75,70 @@ function PatientoversigtMenuContent(props) {
 
       extractedData.forEach((item) => {
         const singlePatientData = Array.from(item.split(","));
+        let newLoadedPatient;
 
-        if (singlePatientData.length !== 9) {
+        if (singlePatientData.length === 9) {
+          newLoadedPatient = {
+            key: String(listOfLoadedPatients.length + 1),
+            firstname: String(singlePatientData[0]),
+            lastname: String(singlePatientData[1]),
+            diagnosis: String(singlePatientData[2]),
+            gender: parseInt(singlePatientData[3]),
+            age: parseInt(singlePatientData[4]),
+            duration: parseInt(singlePatientData[5]),
+            going_to_icu: parseInt(singlePatientData[6]),
+            came_through_ed: parseInt(singlePatientData[7]),
+            contact_type: parseInt(singlePatientData[8]),
+          };
+        } else if (singlePatientData.length === 16) {
+          newLoadedPatient = {
+            key: String(listOfLoadedPatients.length + 1),
+            firstname: String(singlePatientData[0]),
+            lastname: String(singlePatientData[1]),
+            gender: parseInt(singlePatientData[2]),
+            age: parseInt(singlePatientData[3]),
+            dias_blod: parseInt(singlePatientData[4]),
+            sys_blod: parseInt(singlePatientData[5]),
+            saturation: parseInt(singlePatientData[6]),
+            temperature: parseInt(singlePatientData[7]),
+            bmi: parseInt(singlePatientData[8]),
+            weight: parseInt(singlePatientData[9]),
+            contact_type: parseInt(singlePatientData[10]),
+            came_through_ed: parseInt(singlePatientData[11]),
+            going_to_icu: parseInt(singlePatientData[12]),
+            icd: String(singlePatientData[13]),
+            icd_age: parseInt(singlePatientData[14]),
+            los: parseInt(singlePatientData[15]),
+          };
+        } else if (singlePatientData.length === 22) {
+          newLoadedPatient = {
+            key: String(listOfLoadedPatients.length + 1),
+            firstname: String(singlePatientData[0]),
+            lastname: String(singlePatientData[1]),
+            gender: parseInt(singlePatientData[2]),
+            age: parseInt(singlePatientData[3]),
+            dias_blod: parseInt(singlePatientData[4]),
+            sys_blod: parseInt(singlePatientData[5]),
+            saturation: parseInt(singlePatientData[6]),
+            temperature: parseInt(singlePatientData[7]),
+            bmi: parseInt(singlePatientData[8]),
+            weight: parseInt(singlePatientData[9]),
+            contact_type_1: parseInt(singlePatientData[10]),
+            came_through_ed_1: parseInt(singlePatientData[11]),
+            going_to_icu_1: parseInt(singlePatientData[12]),
+            icd_1: String(singlePatientData[13]),
+            icd_age_1: parseInt(singlePatientData[14]),
+            los_1: parseInt(singlePatientData[15]),
+            contact_type_2: parseInt(singlePatientData[16]),
+            came_through_ed_2: parseInt(singlePatientData[17]),
+            going_to_icu_2: parseInt(singlePatientData[18]),
+            icd_2: String(singlePatientData[19]),
+            icd_age_2: parseInt(singlePatientData[20]),
+            los_2: parseInt(singlePatientData[21]),
+          };
+        } else {
           return;
         }
-
-        const newLoadedPatient = {
-          key: String(listOfLoadedPatients.length + 1),
-          firstname: String(singlePatientData[0]),
-          lastname: String(singlePatientData[1]),
-          diagnosis: String(singlePatientData[2]),
-          gender: parseInt(singlePatientData[3]),
-          age: parseInt(singlePatientData[4]),
-          duration: parseInt(singlePatientData[5]),
-          going_to_icu: parseInt(singlePatientData[6]),
-          came_through_ed: parseInt(singlePatientData[7]),
-          contact_type: parseInt(singlePatientData[8]),
-        };
 
         listOfLoadedPatients.push(newLoadedPatient);
       });
