@@ -8,9 +8,9 @@ import { Button, styled } from "@mui/material";
 // gender
 // age
 // duration
-// goingtoicu
-// camethroughed
-// contacttype
+// going_to_icu
+// came_through_ed
+// contact_type
 
 // ["DF10", 2, 50, 0, 0, 0, 1] --> 1
 // ["DZ03", 1, 35, 50, 0, 0, 2 ] --> 0
@@ -88,9 +88,9 @@ function PatientoversigtMenuContent(props) {
           gender: parseInt(singlePatientData[3]),
           age: parseInt(singlePatientData[4]),
           duration: parseInt(singlePatientData[5]),
-          goingtoicu: parseInt(singlePatientData[6]),
-          camethroughed: parseInt(singlePatientData[7]),
-          contacttype: parseInt(singlePatientData[8]),
+          going_to_icu: parseInt(singlePatientData[6]),
+          came_through_ed: parseInt(singlePatientData[7]),
+          contact_type: parseInt(singlePatientData[8]),
         };
 
         listOfLoadedPatients.push(newLoadedPatient);

@@ -11,9 +11,9 @@ function PatientInfoTabContent(props) {
       <p>Gender: {props.data ? props.data.gender : ""}</p>
       <p>Age: {props.data ? props.data.age : ""}</p>
       <p>Duration: {props.data ? props.data.duration : ""}</p>
-      <p>Going to ICU: {props.data ? props.data.goingtoicu : ""}</p>
-      <p>Came through ED: {props.data ? props.data.camethroughed : ""}</p>
-      <p>Contact type: {props.data ? props.data.contacttype : ""}</p>
+      <p>Going to ICU: {props.data ? props.data.going_to_icu : ""}</p>
+      <p>Came through ED: {props.data ? props.data.came_through_ed : ""}</p>
+      <p>Contact type: {props.data ? props.data.contact_type : ""}</p>
     </div>
   );
 }

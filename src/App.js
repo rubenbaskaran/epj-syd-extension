@@ -31,6 +31,7 @@ function App() {
     { key: "3", titel: "Lægetjek", type: "C", prioritet: "Lav" },
   ]);
   const [patients, setPatients] = React.useState([
+    // Returns AUD positive (1)
     {
       key: "1",
       firstname: "Jill",
@@ -39,10 +40,11 @@ function App() {
       gender: 2,
       age: 50,
       duration: 0,
-      goingtoicu: 0,
-      camethroughed: 0,
-      contacttype: 1,
+      going_to_icu: 0,
+      came_through_ed: 0,
+      contact_type: 1,
     },
+    // Returns AUD negative (0)
     {
       key: "2",
       firstname: "Adam",
@@ -51,10 +53,11 @@ function App() {
       gender: 1,
       age: 35,
       duration: 50,
-      goingtoicu: 0,
-      camethroughed: 0,
-      contacttype: 2,
+      going_to_icu: 0,
+      came_through_ed: 0,
+      contact_type: 2,
     },
+    // Returns AUD negative (0)
     {
       key: "3",
       firstname: "Eva",
@@ -63,10 +66,11 @@ function App() {
       gender: 2,
       age: 100,
       duration: 55,
-      goingtoicu: 0,
-      camethroughed: 0,
-      contacttype: 1,
+      going_to_icu: 0,
+      came_through_ed: 0,
+      contact_type: 1,
     },
+    // Returns AUD positive (1)
     {
       key: "4",
       firstname: "Michael",
@@ -75,9 +79,89 @@ function App() {
       gender: 1,
       age: 50,
       duration: 55,
-      goingtoicu: 0,
-      camethroughed: 0,
-      contacttype: 1,
+      going_to_icu: 0,
+      came_through_ed: 0,
+      contact_type: 1,
+    },
+    // Returns AUD positive (1)
+    {
+      key: "5",
+      firstname: "Model 1",
+      lastname: "Mike",
+      gender: 1,
+      age: 50,
+      dias_blod: 92,
+      sys_blod: 156,
+      saturation: 97,
+      temperature: 36.8,
+      bmi: 42.09,
+      weight: 145.2,
+      contact_type: 0,
+      came_through_ed: 0,
+      going_to_icu: 0,
+      icd: "DM75",
+      icd_age: 49,
+      los: 285.5,
+    },
+    // Returns AUD positive (1)
+    {
+      key: "6",
+      firstname: "Model 1",
+      lastname: "Ellen",
+      gender: 2,
+      age: 45,
+      dias_blod: 98,
+      sys_blod: 114,
+      saturation: 98,
+      temperature: 37.3,
+      bmi: 21.47,
+      weight: 65,
+      contact_type: 1,
+      came_through_ed: 0,
+      going_to_icu: 0,
+      icd: "DF10",
+      icd_age: 45,
+      los: 0,
+    },
+    // Returns AUD negative (0)
+    {
+      key: "7",
+      firstname: "Model 1",
+      lastname: "Jack",
+      gender: 1,
+      age: 43,
+      dias_blod: 91.8,
+      sys_blod: 146,
+      saturation: 97.2,
+      temperature: 36.82,
+      bmi: 17.52,
+      weight: 52.6,
+      contact_type: 0,
+      came_through_ed: 0,
+      going_to_icu: 0,
+      icd: "DK50",
+      icd_age: 41,
+      los: 0,
+    },
+    // Returns AUD negative (0)
+    {
+      key: "8",
+      firstname: "Model 1",
+      lastname: "No gender",
+      gender: 0,
+      age: 77,
+      dias_blod: 60.67,
+      sys_blod: 116,
+      saturation: 94.5,
+      temperature: 36.95,
+      bmi: 24.97,
+      weight: 93,
+      contact_type: 1,
+      came_through_ed: 1,
+      going_to_icu: 0,
+      icd: "DS72",
+      icd_age: 77,
+      los: 0,
     },
   ]);
 
@@ -99,15 +183,38 @@ function App() {
       }
 
       setLoading(true);
-      const data = {
-        diagnosis: chosenPatient.diagnosis,
-        gender: chosenPatient.gender,
-        age: chosenPatient.age,
-        duration: chosenPatient.duration,
-        goingToIcu: chosenPatient.goingtoicu,
-        cameThroughEd: chosenPatient.camethroughed,
-        contactType: chosenPatient.contacttype,
-      };
+      let data = null;
+
+      console.log(Object.keys(chosenPatient).length);
+
+      if (Object.keys(chosenPatient).length === 10) {
+        data = {
+          diagnosis: chosenPatient.diagnosis,
+          gender: chosenPatient.gender,
+          age: chosenPatient.age,
+          duration: chosenPatient.duration,
+          going_to_icu: chosenPatient.going_to_icu,
+          came_through_ed: chosenPatient.came_through_ed,
+          contact_type: chosenPatient.contact_type,
+        };
+      } else if (Object.keys(chosenPatient).length === 17) {
+        data = {
+          gender: chosenPatient.gender,
+          age: chosenPatient.age,
+          dias_blod: chosenPatient.dias_blod,
+          sys_blod: chosenPatient.sys_blod,
+          saturation: chosenPatient.saturation,
+          temperature: chosenPatient.temperature,
+          bmi: chosenPatient.bmi,
+          weight: chosenPatient.weight,
+          contact_type: chosenPatient.contact_type,
+          came_through_ed: chosenPatient.came_through_ed,
+          going_to_icu: chosenPatient.going_to_icu,
+          icd: chosenPatient.icd,
+          icd_age: chosenPatient.icd_age,
+          los: chosenPatient.los,
+        };
+      }
 
       axios
         .post("http://localhost:3001/submit", { data })
