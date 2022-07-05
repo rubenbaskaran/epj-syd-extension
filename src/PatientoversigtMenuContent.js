@@ -4,13 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { Button, styled } from "@mui/material";
 
-// diagnosis
+// icd_1
 // gender
 // age
-// duration
-// going_to_icu
-// came_through_ed
-// contact_type
+// los_1
+// going_to_icu_1
+// came_through_ed_1
+// contact_type_1
 
 // ["DF10", 2, 50, 0, 0, 0, 1] --> 1
 // ["DZ03", 1, 35, 50, 0, 0, 2 ] --> 0
@@ -82,13 +82,13 @@ function PatientoversigtMenuContent(props) {
             key: String(listOfLoadedPatients.length + 1),
             firstname: String(singlePatientData[0]),
             lastname: String(singlePatientData[1]),
-            diagnosis: String(singlePatientData[2]),
+            icd_1: String(singlePatientData[2]),
             gender: parseInt(singlePatientData[3]),
             age: parseInt(singlePatientData[4]),
-            duration: parseInt(singlePatientData[5]),
-            going_to_icu: parseInt(singlePatientData[6]),
-            came_through_ed: parseInt(singlePatientData[7]),
-            contact_type: parseInt(singlePatientData[8]),
+            los_1: parseInt(singlePatientData[5]),
+            going_to_icu_1: parseInt(singlePatientData[6]),
+            came_through_ed_1: parseInt(singlePatientData[7]),
+            contact_type_1: parseInt(singlePatientData[8]),
           };
         } else if (singlePatientData.length === 16) {
           newLoadedPatient = {
@@ -103,12 +103,12 @@ function PatientoversigtMenuContent(props) {
             temperature: parseInt(singlePatientData[7]),
             bmi: parseInt(singlePatientData[8]),
             weight: parseInt(singlePatientData[9]),
-            contact_type: parseInt(singlePatientData[10]),
-            came_through_ed: parseInt(singlePatientData[11]),
-            going_to_icu: parseInt(singlePatientData[12]),
-            icd: String(singlePatientData[13]),
-            icd_age: parseInt(singlePatientData[14]),
-            los: parseInt(singlePatientData[15]),
+            contact_type_1: parseInt(singlePatientData[10]),
+            came_through_ed_1: parseInt(singlePatientData[11]),
+            going_to_icu_1: parseInt(singlePatientData[12]),
+            icd_1: String(singlePatientData[13]),
+            icd_age_1: parseInt(singlePatientData[14]),
+            los_1: parseInt(singlePatientData[15]),
           };
         } else if (singlePatientData.length === 22) {
           newLoadedPatient = {
