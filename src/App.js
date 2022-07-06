@@ -281,95 +281,107 @@ function App() {
 
   React.useEffect(() => {
     if (chosenPatient !== null) {
-      const foundTask = tasks.find(
-        (task) =>
-          task.titel === chosenPatient.firstname + " " + chosenPatient.lastname
-      );
-
-      if (foundTask) {
+      if (TaskAlreadyAdded()) {
         return;
+      } else {
+        RunAudModelOnBackend();
       }
-
-      setLoading(true);
-      let data = null;
-
-      if (Object.keys(chosenPatient).length === 10) {
-        data = {
-          icd_1: chosenPatient.icd_1,
-          gender: chosenPatient.gender,
-          age: chosenPatient.age,
-          los_1: chosenPatient.los_1,
-          going_to_icu_1: chosenPatient.going_to_icu_1,
-          came_through_ed_1: chosenPatient.came_through_ed_1,
-          contact_type_1: chosenPatient.contact_type_1,
-        };
-      } else if (Object.keys(chosenPatient).length === 17) {
-        data = {
-          gender: chosenPatient.gender,
-          age: chosenPatient.age,
-          dias_blod: chosenPatient.dias_blod,
-          sys_blod: chosenPatient.sys_blod,
-          saturation: chosenPatient.saturation,
-          temperature: chosenPatient.temperature,
-          bmi: chosenPatient.bmi,
-          weight: chosenPatient.weight,
-          contact_type_1: chosenPatient.contact_type_1,
-          came_through_ed_1: chosenPatient.came_through_ed_1,
-          going_to_icu_1: chosenPatient.going_to_icu_1,
-          icd_1: chosenPatient.icd_1,
-          icd_age_1: chosenPatient.icd_age_1,
-          los_1: chosenPatient.los_1,
-        };
-      } else if (Object.keys(chosenPatient).length === 23) {
-        data = {
-          gender: chosenPatient.gender,
-          age: chosenPatient.age,
-          dias_blod: chosenPatient.dias_blod,
-          sys_blod: chosenPatient.sys_blod,
-          saturation: chosenPatient.saturation,
-          temperature: chosenPatient.temperature,
-          bmi: chosenPatient.bmi,
-          weight: chosenPatient.weight,
-          contact_type_1: chosenPatient.contact_type_1,
-          came_through_ed_1: chosenPatient.came_through_ed_1,
-          going_to_icu_1: chosenPatient.going_to_icu_1,
-          icd_1: chosenPatient.icd_1,
-          icd_age_1: chosenPatient.icd_age_1,
-          los_1: chosenPatient.los_1,
-          contact_type_2: chosenPatient.contact_type_2,
-          came_through_ed_2: chosenPatient.came_through_ed_2,
-          going_to_icu_2: chosenPatient.going_to_icu_2,
-          icd_2: chosenPatient.icd_2,
-          icd_age_2: chosenPatient.icd_age_2,
-          los_2: chosenPatient.los_2,
-        };
-      }
-
-      axios
-        .post("http://localhost:3001/submit", { data })
-        .then(function (response) {
-          switch (response.data.output) {
-            case 0:
-              console.log("Result was 0 (good)");
-              break;
-            case 1:
-              console.log("Result was 1 (bad)");
-              AddNewTask();
-              break;
-            default:
-              console.log("Result was invalid (error)");
-              break;
-          }
-
-          setLoading(false);
-        })
-        .catch(function (error) {
-          console.log("Connection error:");
-          console.log(error);
-          setLoading(false);
-        });
     }
   }, [chosenPatient]);
+
+  function TaskAlreadyAdded() {
+    const foundTask = tasks.find(
+      (task) =>
+        task.titel === chosenPatient.firstname + " " + chosenPatient.lastname
+    );
+
+    if (foundTask) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  function RunAudModelOnBackend() {
+    setLoading(true);
+    let data = null;
+
+    if (Object.keys(chosenPatient).length === 10) {
+      data = {
+        icd_1: chosenPatient.icd_1,
+        gender: chosenPatient.gender,
+        age: chosenPatient.age,
+        los_1: chosenPatient.los_1,
+        going_to_icu_1: chosenPatient.going_to_icu_1,
+        came_through_ed_1: chosenPatient.came_through_ed_1,
+        contact_type_1: chosenPatient.contact_type_1,
+      };
+    } else if (Object.keys(chosenPatient).length === 17) {
+      data = {
+        gender: chosenPatient.gender,
+        age: chosenPatient.age,
+        dias_blod: chosenPatient.dias_blod,
+        sys_blod: chosenPatient.sys_blod,
+        saturation: chosenPatient.saturation,
+        temperature: chosenPatient.temperature,
+        bmi: chosenPatient.bmi,
+        weight: chosenPatient.weight,
+        contact_type_1: chosenPatient.contact_type_1,
+        came_through_ed_1: chosenPatient.came_through_ed_1,
+        going_to_icu_1: chosenPatient.going_to_icu_1,
+        icd_1: chosenPatient.icd_1,
+        icd_age_1: chosenPatient.icd_age_1,
+        los_1: chosenPatient.los_1,
+      };
+    } else if (Object.keys(chosenPatient).length === 23) {
+      data = {
+        gender: chosenPatient.gender,
+        age: chosenPatient.age,
+        dias_blod: chosenPatient.dias_blod,
+        sys_blod: chosenPatient.sys_blod,
+        saturation: chosenPatient.saturation,
+        temperature: chosenPatient.temperature,
+        bmi: chosenPatient.bmi,
+        weight: chosenPatient.weight,
+        contact_type_1: chosenPatient.contact_type_1,
+        came_through_ed_1: chosenPatient.came_through_ed_1,
+        going_to_icu_1: chosenPatient.going_to_icu_1,
+        icd_1: chosenPatient.icd_1,
+        icd_age_1: chosenPatient.icd_age_1,
+        los_1: chosenPatient.los_1,
+        contact_type_2: chosenPatient.contact_type_2,
+        came_through_ed_2: chosenPatient.came_through_ed_2,
+        going_to_icu_2: chosenPatient.going_to_icu_2,
+        icd_2: chosenPatient.icd_2,
+        icd_age_2: chosenPatient.icd_age_2,
+        los_2: chosenPatient.los_2,
+      };
+    }
+
+    axios
+      .post("http://localhost:3001/submit", { data })
+      .then(function (response) {
+        switch (response.data.output) {
+          case 0:
+            console.log("Result was 0 (good)");
+            break;
+          case 1:
+            console.log("Result was 1 (bad)");
+            AddNewTask();
+            break;
+          default:
+            console.log("Result was invalid (error)");
+            break;
+        }
+
+        setLoading(false);
+      })
+      .catch(function (error) {
+        console.log("Connection error:");
+        console.log(error);
+        setLoading(false);
+      });
+  }
 
   function AddNewTask() {
     if (chosenPatient != null) {
