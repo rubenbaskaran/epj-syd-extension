@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css";
-import PatientoversigtMenuContent from "./PatientoversigtMenuContent";
-import MineOpgaverMenuContent from "./MineOpgaverMenuContent";
-import PatientInfoTabContent from "./PatientInfoTabContent";
-import OpgaveInfoTabContent from "./OpgaveInfoTabContent";
-import HistorikTabContent from "./HistorikTabContent";
+import PatientoversigtMenuContent from "./components/PatientoversigtMenuContent";
+import MineOpgaverMenuContent from "./components/MineOpgaverMenuContent";
+import PatientInfoTabContent from "./components/PatientInfoTabContent";
+import OpgaveInfoTabContent from "./components/OpgaveInfoTabContent";
+import HistorikTabContent from "./components/HistorikTabContent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
