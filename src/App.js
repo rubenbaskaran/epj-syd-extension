@@ -270,10 +270,14 @@ function App() {
   ]);
 
   React.useEffect(() => {
+    OpenLeftTabOnItemSelect();
+  }, [chosenPatient, chosenTask]);
+
+  function OpenLeftTabOnItemSelect() {
     if (chosenPatient != null || chosenTask != null) {
       document.getElementById("myBtn").click();
     }
-  }, [chosenPatient, chosenTask]);
+  }
 
   React.useEffect(() => {
     if (chosenPatient !== null) {
